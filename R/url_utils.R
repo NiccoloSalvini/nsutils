@@ -8,17 +8,16 @@
 #' @details DETAILS
 #' @examples
 #' \dontrun{
-#' if(interactive()){
-#'  #EXAMPLE1
-#'  }
+#' if (interactive()) {
+#'   # EXAMPLE1
+#' }
 #' }
 #' @seealso
 #'  \code{\link[httr]{HEAD}}, \code{\link[httr]{GET}}, \code{\link[httr]{status_code}}
 #' @rdname url_exists2
 #' @export
 #' @importFrom httr HEAD GET status_code
-url_exists2 <- function(x, non_2xx_return_value = FALSE, quiet = FALSE,...) {
-
+url_exists2 <- function(x, non_2xx_return_value = FALSE, quiet = FALSE, ...) {
   suppressPackageStartupMessages({
     require("httr", quietly = FALSE, warn.conflicts = FALSE)
   })
@@ -31,8 +30,9 @@ url_exists2 <- function(x, non_2xx_return_value = FALSE, quiet = FALSE,...) {
     tryCatch(
       list(result = code, error = NULL),
       error = function(e) {
-        if (!quiet)
+        if (!quiet) {
           message("Error: ", e$message)
+        }
 
         list(result = otherwise, error = e)
       },
@@ -53,11 +53,12 @@ url_exists2 <- function(x, non_2xx_return_value = FALSE, quiet = FALSE,...) {
   res <- sHEAD(x, httr::config(http_version = 0), ...)
 
   if (is.null(res$result) ||
-      ((httr::status_code(res$result) %/% 200) != 1)) {
-
+    ((httr::status_code(res$result) %/% 200) != 1)) {
     res <- sGET(x, httr::config(http_version = 0), ...)
 
-    if (is.null(res$result)) return(NA) # or whatever you want to return on "hard" errors
+    if (is.null(res$result)) {
+      return(NA)
+    } # or whatever you want to return on "hard" errors
 
     if (((httr::status_code(res$result) %/% 200) != 1)) {
       if (!quiet) warning(sprintf("Requests for [%s] responded but without an HTTP status code in the 200-299 range", x))
@@ -65,11 +66,9 @@ url_exists2 <- function(x, non_2xx_return_value = FALSE, quiet = FALSE,...) {
     }
 
     return(TRUE)
-
   } else {
     return(TRUE)
   }
-
 }
 
 
@@ -82,4 +81,3 @@ extract_date_from_url <- function(url) {
     stringr::str_extract(pattern = "\\d+") %>%
     return()
 }
-

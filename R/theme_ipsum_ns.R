@@ -38,50 +38,52 @@
 #' # seminal scatterplot
 #' ggplot(mtcars, aes(mpg, wt)) +
 #'   geom_point() +
-#'   labs(x="Fuel efficiency (mpg)", y="Weight (tons)",
-#'        title="Seminal ggplot2 scatterplot example",
-#'        subtitle="A plot that is only useful for demonstration purposes",
-#'        caption="Brought to you by the letter 'g'") +
+#'   labs(
+#'     x = "Fuel efficiency (mpg)", y = "Weight (tons)",
+#'     title = "Seminal ggplot2 scatterplot example",
+#'     subtitle = "A plot that is only useful for demonstration purposes",
+#'     caption = "Brought to you by the letter 'g'"
+#'   ) +
 #'   theme_ipsum_rc()
 #'
 #' # seminal bar chart
 #'
 #' # note: make this font_rc on Windows
-#' update_geom_font_defaults(family=font_rc_light)
+#' update_geom_font_defaults(family = font_rc_light)
 #'
 #' count(mpg, class) %>%
 #'   ggplot(aes(class, n)) +
 #'   geom_col() +
-#'   geom_text(aes(label=n), nudge_y=3) +
-#'   labs(x="Fuel efficiency (mpg)", y="Weight (tons)",
-#'        title="Seminal ggplot2 bar chart example",
-#'        subtitle="A plot that is only useful for demonstration purposes",
-#'        caption="Brought to you by the letter 'g'") +
-#'   theme_ipsum_rc(grid="Y") +
-#'   theme(axis.text.y=element_blank())
+#'   geom_text(aes(label = n), nudge_y = 3) +
+#'   labs(
+#'     x = "Fuel efficiency (mpg)", y = "Weight (tons)",
+#'     title = "Seminal ggplot2 bar chart example",
+#'     subtitle = "A plot that is only useful for demonstration purposes",
+#'     caption = "Brought to you by the letter 'g'"
+#'   ) +
+#'   theme_ipsum_rc(grid = "Y") +
+#'   theme(axis.text.y = element_blank())
 #' }
-theme_ipsum_rc <- function(
-    base_family="Roboto Condensed", base_size = 11.5,
-    plot_title_family=base_family, plot_title_size = 18,
-    plot_title_face="bold", plot_title_margin = 10,
-    subtitle_family=if (.Platform$OS.type == "windows") "Roboto Condensed" else "Roboto Condensed Light",
-    subtitle_size = 13,
-    subtitle_face = "plain", subtitle_margin = 15,
-    strip_text_family = base_family, strip_text_size = 12,
-    strip_text_face = "plain",
-    caption_family=if (.Platform$OS.type == "windows") "Roboto Condensed" else "Roboto Condensed Light",
-    caption_size = 9,
-    caption_face = "plain", caption_margin = 10,
-    axis_text_size = base_size,
-    axis_title_family = base_family,
-    axis_title_size = 9,
-    axis_title_face = "plain",
-    axis_title_just = "rt",
-    plot_margin = margin(30, 30, 30, 30),
-    panel_spacing = grid::unit(2, "lines"),
-    grid_col = "#cccccc", grid = TRUE,
-    axis_col = "#cccccc", axis = FALSE, ticks = FALSE) {
-
+theme_ipsum_rc <- function(base_family = "Roboto Condensed", base_size = 11.5,
+                           plot_title_family = base_family, plot_title_size = 18,
+                           plot_title_face = "bold", plot_title_margin = 10,
+                           subtitle_family = if (.Platform$OS.type == "windows") "Roboto Condensed" else "Roboto Condensed Light",
+                           subtitle_size = 13,
+                           subtitle_face = "plain", subtitle_margin = 15,
+                           strip_text_family = base_family, strip_text_size = 12,
+                           strip_text_face = "plain",
+                           caption_family = if (.Platform$OS.type == "windows") "Roboto Condensed" else "Roboto Condensed Light",
+                           caption_size = 9,
+                           caption_face = "plain", caption_margin = 10,
+                           axis_text_size = base_size,
+                           axis_title_family = base_family,
+                           axis_title_size = 9,
+                           axis_title_face = "plain",
+                           axis_title_just = "rt",
+                           plot_margin = margin(30, 30, 30, 30),
+                           panel_spacing = grid::unit(2, "lines"),
+                           grid_col = "#cccccc", grid = TRUE,
+                           axis_col = "#cccccc", axis = FALSE, ticks = FALSE) {
   ret <- ggplot2::theme_minimal(base_family = base_family, base_size = base_size)
 
   ret <- ret + theme(legend.background = element_blank())
@@ -103,12 +105,12 @@ theme_ipsum_rc <- function(
     }
   } else {
     ret <- ret + theme(panel.grid = element_blank())
-    ret <- ret + theme(panel.grid.major  = element_blank())
-    ret <- ret + theme(panel.grid.major.x  = element_blank())
-    ret <- ret + theme(panel.grid.major.y  = element_blank())
-    ret <- ret + theme(panel.grid.minor  = element_blank())
-    ret <- ret + theme(panel.grid.minor.x  = element_blank())
-    ret <- ret + theme(panel.grid.minor.y  = element_blank())
+    ret <- ret + theme(panel.grid.major = element_blank())
+    ret <- ret + theme(panel.grid.major.x = element_blank())
+    ret <- ret + theme(panel.grid.major.y = element_blank())
+    ret <- ret + theme(panel.grid.minor = element_blank())
+    ret <- ret + theme(panel.grid.minor.x = element_blank())
+    ret <- ret + theme(panel.grid.minor.y = element_blank())
   }
 
   if (inherits(axis, "character") | axis == TRUE) {
@@ -144,8 +146,22 @@ theme_ipsum_rc <- function(
     ret <- ret + theme(axis.ticks.length = grid::unit(5, "pt"))
   }
 
-  xj <- switch(tolower(substr(axis_title_just, 1, 1)), b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
-  yj <- switch(tolower(substr(axis_title_just, 2, 2)), b = 0, l = 0, m = 0.5, c = 0.5, r = 1, t = 1)
+  xj <- switch(tolower(substr(axis_title_just, 1, 1)),
+    b = 0,
+    l = 0,
+    m = 0.5,
+    c = 0.5,
+    r = 1,
+    t = 1
+  )
+  yj <- switch(tolower(substr(axis_title_just, 2, 2)),
+    b = 0,
+    l = 0,
+    m = 0.5,
+    c = 0.5,
+    r = 1,
+    t = 1
+  )
 
   ret <- ret + theme(axis.text = element_text(size = axis_text_size, margin = margin(t = 0, r = 0)))
   ret <- ret + theme(axis.text.x = element_text(size = axis_text_size, margin = margin(t = 0)))
@@ -187,7 +203,6 @@ theme_ipsum_rc <- function(
   ))
 
   ret
-
 }
 
 #' Import Roboto Condensed font for use in charts
@@ -206,9 +221,7 @@ theme_ipsum_rc <- function(
 #'   other font you wish to use in other programs.
 #' @export
 import_roboto_condensed <- function() {
-
-  rc_font_dir <- system.file("fonts", "roboto-condensed", package="nsutils")
-
+  rc_font_dir <- system.file("fonts", "roboto-condensed", package = "nsutils")
 }
 
 #' @rdname RobotoCondensed

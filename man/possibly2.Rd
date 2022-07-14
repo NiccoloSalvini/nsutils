@@ -15,7 +15,7 @@ possibly2(.f, otherwise = NULL)
 possibly class function
 }
 \description{
-a purrr::possibly wrapper to generate dynamic default when failing
+a purrr::possibly wrapper to generate dynamic default when failistng
 }
 \details{
 it consistnetly works well with purrr::insistently
