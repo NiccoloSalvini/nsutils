@@ -28,22 +28,22 @@ scales x var and adds € suffix
 }
 \examples{
 \dontrun{
-if(interactive()){
-txhousing \%>\%
-  filter(city == "El Paso") \%>\%
-  group_by(year) \%>\%
-  summarise(
-    mean_volume_by_year = mean(volume)
-  ) \%>\%
-  ggplot(aes(x = year, y = mean_volume_by_year/10^6)) +
-  geom_line() +
-  scale_y_continuous_euro(suffix = "M ")+
-  labs(
-    x = "",
-    y = "mean volume in Mil (€) "
-  ) +
-  theme_ipsum_rc()
- }
+if (interactive()) {
+  txhousing \%>\%
+    filter(city == "El Paso") \%>\%
+    group_by(year) \%>\%
+    summarise(
+      mean_volume_by_year = mean(volume)
+    ) \%>\%
+    ggplot(aes(x = year, y = mean_volume_by_year / 10^6)) +
+    geom_line() +
+    scale_y_continuous_euro(suffix = "M ") +
+    labs(
+      x = "",
+      y = "mean volume in Mil (€) "
+    ) +
+    theme_ipsum_rc()
+}
 }
 }
 \seealso{

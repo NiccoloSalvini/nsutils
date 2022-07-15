@@ -22,8 +22,8 @@ it consistnetly works well with purrr::insistently
 }
 \examples{
 \dontrun{
-if(interactive()){
- #EXAMPLE1
- }
+if (interactive()) {
+  # EXAMPLE1
+}
 }
 }
