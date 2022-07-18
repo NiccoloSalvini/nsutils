@@ -17,5 +17,6 @@ Imports:
     httr,
     lubridate,
     magrittr,
+    readr,
     scales,
     stringr
